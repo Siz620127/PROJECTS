@@ -1,0 +1,138 @@
+Project SY_MY brief description.
+
+This project was created for testing ERP Monitor G5 API functions.
+Monitor G5 is Sweden ERP for manufacturing companies.
+API use SSL connection for REST calls.
+
+Full API Doc there is in
+https://api.monitor.se/articles/v1/index.html
+https://api.monitor.se/api/Monitor.API.Accounting.Account.html
+
+
+
+System configuration there is in SY_My.conf file.
+Data from original Sybase database transfered into Amazon cloud (AWS).
+API returns JSON responses, therefore used json-simple-1.1.1.jar for data parsing.
+In this project not used any framework (IntelliJ IDEA, Spring boot).
+Compilation, creating JAR file are made by manually using 
+javacomp.bat
+jararchive.bat
+API functions running examples are in Monitor_G5_API.bat
+Log records are saved in SY_MY.log file.
+
+
+
+
+
+
+
+
+
+# Sybase -> MySQL  failide baasi kirjutamise softi konfiguratsioonifail
+
+#Default baasi connect kujul jdbc:jtds:<server_type>://<server>[:<port>][/<database>][;<property>=<value>[;...]]
+# devbaasi tsooni baas 8001   7100
+# URL_SY = jdbc:jtds:sybase://185.158.177.241:8001/002_1;password=smjmek29;user=dba
+# curl --verbose --insecure  -H "Content-Type: application/json"   -H "Cache-Control: no-cache"  -H "Accept: application/json"  --data @auth.json  -o "response.txt"  https://185.158.177.241:8001/en/002_1.1/login  >> logs.txt 2>&1 	
+
+URL_SY = https://185.158.177.241:8001/en/002_1.1/login
+HOST_SY = 185.158.177.241
+PORT_SY = 8001
+LANGUAGECODE_SY = en
+COMPANYNUMBER_SY = 002_1.1
+FORCERELOGIN_SY = true
+SESSIONID_SY = 4f0ad3ae-9367-4876-94d8-501a81a3451b
+
+
+
+# Sybase juures pole DBNAME vaja, jäta tühjaks
+DBNAME_SY = 002_1
+
+# Driver jäta muutmata
+DRIVER_SY = net.sourceforge.jtds.jdbc.Driver
+
+# kasutaja, kellega tehakse baasi connect. Peab olema õigus kirjutada
+USERNAME_SY = ADMIN
+PASSWORD_SY = 
+
+DBUSERNAME_SY = dba
+DBPASSWORD_SY = smjmek29
+
+# Millisesse kataloogi kirjutab rahalugemismasin oma failid, sealt läheb soft otsima uusi faile
+# Kataloogide eraldaja peab olema (ka windowsis) parempidine kaldkriips /
+# FROMDIR = /bps200srv
+FROMDIR = C:/PROJECTS/KLIPFOLIO/SY_MY/FROMDIR
+
+# Millisesse kataloogi tuleks kopeerida ära loetud failid
+# TODIR = /export/home/rahalm/bps200srv_files
+TODIR = C:/PROJECTS/KLIPFOLIO/SY_MY/TODIR
+
+# Kus on logifail
+# LOGFILE = /export/home/rahalm/log/Fileloader.log
+LOGFILE = C:/PROJECTS/KLIPFOLIO/SY_MY/LOG/SY_MY.log
+
+# --------------------------------------------------
+
+#Default baasi connect kujul jdbc:mysql://{HOST}[:{PORT}][/{DB}]
+# Amazon  tsooni baas 8001   7100
+URL_MY = jdbc:mysql://monitorbi-dbcluster-n4ypub1uelba.cluster-cosbzhhhppdb.eu-central-1.rds.amazonaws.com
+
+# MySQL juures pole DBNAME vaja, jäta tühjaks
+DBNAME_MY = monitordb5 
+
+# Driver jäta muutmata
+DRIVER_MY = com.mysql.jdbc.Driver
+
+# kasutaja, kellega tehakse baasi connect. Peab olema õigus kirjutada
+USERNAME_MY = AMAZON
+PASSWORD_MY = AMAZON
+
+# --------------------------------------------------
+
+#Default baasi connect kujul jdbc:mysql://{HOST}[:{PORT}][/{DB}]
+# devbaasi tsooni baas 8001   7100
+URL_MYDE = jdbc:mysql://db-mysql-fra1-25893-do-user-592825-0.b.db.ondigitalocean.com:25060/defaultdb
+
+# MySQL juures pole DBNAME vaja, jäta tühjaks
+DBNAME_MYDE = defaultdb
+
+# Driver jäta muutmata
+DRIVER_MYDE = com.mysql.jdbc.Driver
+
+# kasutaja, kellega tehakse baasi connect. Peab olema õigus kirjutada
+USERNAME_MYDE = doadmin
+PASSWORD_MYDE = sv1b9f675g0ew4bc
+
+# --------------------------------------------------
+#RADIUS baasi connect kujul jdbc:mysql://{HOST}[:{PORT}][/{DB}]
+# devbaasi tsooni baas 8001   7100
+URL_MYRA = jdbc:mysql://db-mysql-fra1-25893-do-user-592825-0.b.db.ondigitalocean.com:25060/Radius
+
+# MySQL juures pole DBNAME vaja, jäta tühjaks
+DBNAME_MYRA = Radius
+
+# Driver jäta muutmata
+DRIVER_MYRA = com.mysql.jdbc.Driver
+
+# kasutaja, kellega tehakse baasi connect. Peab olema õigus kirjutada
+USERNAME_MYRA = Radius
+PASSWORD_MYRA = Radius2021!
+
+# --------------------------------------------------
+#HE baasi connect kujul jdbc:mysql://{HOST}[:{PORT}][/{DB}]
+# devbaasi tsooni baas 8001   7100
+URL_MYHE = jdbc:mysql://db-harju-elekter-teletehnika-do-user-592825-0.b.db.ondigitalocean.com:25060/defaultdb
+
+# MySQL juures pole DBNAME vaja, jäta tühjaks
+DBNAME_MYHE = defaultdb
+
+# Driver jäta muutmata
+DRIVER_MYHE = com.mysql.jdbc.Driver
+
+# kasutaja, kellega tehakse baasi connect. Peab olema õigus kirjutada
+USERNAME_MYHE = doadmin
+PASSWORD_MYHE = hmxlhisgs2ho3zq1
+
+# --------------------------------------------------
+
+
